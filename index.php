@@ -3,8 +3,8 @@
 SESSION_START();
 
 // create a pre defined username and password since we do not have database
-$acc_username = "andreipogi";
-$acc_password = "angpasswordkoaymonroyo";
+$acc_username = "NeilAndrei";
+$acc_password = "andrei123";
 $acc_fullname = "Neil Andrei Monroyo";
 $acc_address = "Bunganay Boac Marinduque";
 
@@ -17,26 +17,25 @@ if (isset($_REQUEST['login_button']) === true) {
 	// get the username and password from the form and compare to the predefined username and password
 	// kapag mali agad ung username
 	if ($_REQUEST['form_username'] != $acc_username) {
-		header("Location: ".$url_add."?notexist");
+		header("Location: " . $url_add . "?notexist");
 	}
 	// tama and username mali and password
 	if ($_REQUEST['form_username'] == $acc_username && $_REQUEST['form_password'] != $acc_password) {
-		header("Location: ".$url_add."?wrongpass");
+		header("Location: " . $url_add . "?wrongpass");
 	}
 	// tame and username at password
 	if ($_REQUEST['form_username'] == $acc_username && $_REQUEST['form_password'] == $acc_password) {
-		header("Location: ".$url_add."?success");
+		header("Location: " . $url_add . "?success");
 
 		// create a session variable
 		$_SESSION['ses_username'] = $acc_username;
 		$_SESSION['ses_password'] = $acc_password;
 		$_SESSION['ses_fullname'] = $acc_fullname;
 		$_SESSION['ses_address'] = $acc_address;
+	} // end of correct username and password
 
-	}// end of correct username and password
 
-
-}// end of login button
+} // end of login button
 ?>
 
 <!doctype html>
@@ -76,18 +75,23 @@ if (isset($_REQUEST['login_button']) === true) {
 
 								<?php
 								// this is the messaging
-								if(isset($_REQUEST['notexist']) === true) {
+								if (isset($_REQUEST['notexist']) === true) {
 									echo '<div class="alert alert-danger" role="alert"> Username does not exist... </div>';
-								}if(isset($_REQUEST['wrongpass']) === true){
+								}
+								if (isset($_REQUEST['wrongpass']) === true) {
 									echo '<div class="alert alert-warning" role="alert"> Wrong Password... </div>';
-								}if(isset($_REQUEST['success']) === true){
+								}
+								if (isset($_REQUEST['success']) === true) {
 									echo '<div class="alert alert-success" role="alert"> Redirecting... </div>';
 									header("Refresh:5 url=account.php");
-								}if(isset($_REQUEST['logout']) === true){
+								}
+								if (isset($_REQUEST['logout']) === true) {
 									echo '<div class="alert alert-info" role="alert"> Thank You... </div>';
-								}if(isset($_REQUEST['logfirst']) === true){
+								}
+								if (isset($_REQUEST['logfirst']) === true) {
 									echo '<div class="alert alert-info" role="alert"> Please Login First. </div>';
-								}if(isset($_SESSION['ses_username']) === true){
+								}
+								if (isset($_SESSION['ses_username']) === true) {
 									echo '<div class="alert alert-warning" role="alert"> You are still logged in. Please <a href="account.php"> click here </a> to proceed </div>';
 								}
 								?>
